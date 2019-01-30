@@ -1,0 +1,33 @@
+language: ruby
+dist: trusty
+sudo: false
+rvm:
+  - 2.3.8
+  - jruby-9
+  - rbx-3
+gemfile:
+  - spec/gemfiles/rails_4_2.gemfile
+  - spec/gemfiles/rails_5_0.gemfile
+  - spec/gemfiles/rails_5_2.gemfile
+git:
+  submodules: false
+env:
+  global:
+  - TRAVIS=1
+matrix:
+  allow_failures:
+  - rvm: rbx-3
+cache: bundler
+bundler_args: --path ../../vendor/bundle --without debug
+
+script:
+- >
+  if [[ "$(rvm current)" = "ruby-"* ]]; then
+    COVERAGE=1 bundle exec rspec --format d
+  else
+    bundle exec rspec --format d
+  fi
+- >
+  if [[ "$(rvm current)" = "ruby-"* ]]; then
+    bundle exec codeclimate-test-reporter
+  fi

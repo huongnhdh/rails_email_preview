@@ -1,0 +1,7 @@
+source 'http://rubygems.org'
+
+gemspec path: '../..'
+eval_gemfile '../../shared.gemfile'
+
+gem 'rails', '~> 5.2.1'
+
