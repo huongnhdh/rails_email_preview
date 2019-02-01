@@ -11,7 +11,7 @@ module RailsEmailPreview
 
     def add_breadcrumbs
       add_breadcrumb 'HOME', '/admin'
-      add_breadcrumb SystemMailTemplate.model_name.human, rails_email_preview_path
+      add_breadcrumb SystemMailTemplate.model_name.human, admin_system_mail_templates_path
       if @mail_template.present?
         add_breadcrumb(@mail_template.name) if params[:action] != 'index'
         add_breadcrumb t('common.edit') if %w[edit update].include?(params[:action])
