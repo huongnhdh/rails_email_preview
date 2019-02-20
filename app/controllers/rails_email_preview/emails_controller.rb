@@ -10,7 +10,7 @@ module RailsEmailPreview
     before_action :set_title
 
     def add_breadcrumbs
-      add_breadcrumb 'HOME', '/admin'
+      add_breadcrumb 'HOME', '/'
       add_breadcrumb SystemMailTemplate.model_name.human, '/admin/system_mail_templates'
       if @mail_template.present?
         add_breadcrumb(@mail_template.name) if params[:action] != 'index'
